@@ -1,0 +1,6 @@
+flask
+pykafka
+confluent-kafka
+pymongo
+dash
+matplotlib

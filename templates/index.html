@@ -47,11 +47,29 @@
         const KAFKA_TOPIC = {{ KAFKA_TOPIC  | tojson }};
 
     </script>
-<script src="../static/js/L.Maps.Sync.js"></script>   
+    <script src="../static/js/L.Maps.Sync.js"></script>   
     <!-- required custom tools -->
     <script src="../static/js/utils.js"></script>
     <!-- load the map and manage events relative to -->
     <script src="../static/js/map.js"></script>
+
+    <div id="velocityDisplay">Average Velocity: 0 m/s</div>
+
+    <script>
+    // ... Existing JavaScript code ...
+
+    source.addEventListener("message", function (e) {
+
+        // Parse the incoming data
+        var obj = JSON.parse(e.data);
+
+        // Display velocity
+        if (obj.velocity !== undefined) {
+            document.getElementById('velocityDisplay').innerHTML = `Bus Velocity: ${obj.velocity.toFixed(2)} m/s`;
+        }
+    }, false);
+</script>
+
 
 </body>
 </html>

@@ -23,11 +23,13 @@ def index():
     # https://stackoverflow.com/questions/12096522/render-template-with-multiple-variables
     return(render_template('index.html', **locals()))
 
+
 #Consumer API
 @app.route('/topic/<topicname>')
 def get_messages(topicname):
     client = get_kafka_client()
     def events():
+        
         for i in client.topics[topicname].get_simple_consumer(
             # The 2 following parameters avoid recovering old data
             # to only get latest/new data
@@ -35,6 +37,7 @@ def get_messages(topicname):
     		reset_offset_on_start=True
     	):
             yield 'data:{0}\n\n'.format(i.value.decode())
+            
     return Response(events(), mimetype="text/event-stream")
 
 if __name__ == '__main__':

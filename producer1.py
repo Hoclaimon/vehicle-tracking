@@ -16,6 +16,7 @@ producer = topic.get_sync_producer()
 data = {}
 data['service'] = 'HanoiBus1'
 
+
 def generate_checkpoint(coordinates):
     i = 0
     while i < len(coordinates):

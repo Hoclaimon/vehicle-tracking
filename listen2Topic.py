@@ -34,6 +34,4 @@ while True:
         handle_record(record)
 
 
-
-
 # collection.drop()
